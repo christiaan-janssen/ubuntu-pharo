@@ -13,7 +13,7 @@ node("docker-agent") {
         app = docker.build("shidima/ubuntu-pharo:${env.BUILD_ID}")
     }
     
-    staget('Push Image') {
+    stage('Push Image') {
         docker.withRegistry('https://registry.example.com', 'dockerhub') {
             app.push()  
             app.push('latest')
