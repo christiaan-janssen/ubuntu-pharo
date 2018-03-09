@@ -10,7 +10,13 @@ node("docker-agent") {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        app = docker.build("shidima/ubuntu-pharo")
+        app = docker.build("shidima/ubuntu-pharo:${env.BUILD_ID}")
+    }
+    
+    staget('Push Image') {
+        docker.withRegistry('https://registry.example.com', 'dockerhub') {
+            app.push()  
+            app.push('latest')
+        }
     }
 }
