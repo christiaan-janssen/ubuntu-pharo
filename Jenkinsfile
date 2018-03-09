@@ -14,7 +14,7 @@ node("docker-agent") {
     }
     
     stage('Push Image') {
-        docker.withRegistry('https://registry.example.com', 'dockerhub') {
+        docker.withRegistry('', 'dockerhub') {
             app.push()  
             app.push('latest')
         }
